@@ -1,0 +1,22 @@
+{
+    "test": {},
+    "development": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://mongoUser2:User2pwd@orchardmongo.eastus.cloudapp.azure.com:27017/Orchard2",
+        "JWT_SECRET": "thisismynewcourse",
+        "EMAIL": "sellmobileteam@gmail.com",
+        "PASSWORD": "Meanstack@2019",
+        "ENV": "development",
+        "FRONTEND_URL": "https://sellmobile-wtjan2019-dev-client.azurewebsites.net/",
+        "GOOGLE_WEB": {
+            "client_id": "928380373537-qt2bjvhusp8guilu76ls6ul4mj54kdfm.apps.googleusercontent.com",
+            "client_secret": "2KKN8EjYnTYM-AKUDNy7CBRr",
+            "redirect_uris": ["https://sellmobile-wtjan2019-dev-api.azurewebsites.net/auth/google/callback"]
+        },
+        "GITHUB_WEB": {
+            "client_id": "6484968203fb83109ff6",
+            "client_secret": "7b8a61a60932de73cde7301d93bc5bf1666a958c",
+            "redirect_uris": ["https://sellmobile-wtjan2019-dev-api.azurewebsites.net/auth/github/callback"]
+        }
+    }
+}

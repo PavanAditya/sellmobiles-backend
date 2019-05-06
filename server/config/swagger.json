@@ -1,0 +1,1730 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger-API Documentation for SELL MOBILES",
+        "description": "A sample API that displays the details of sell mobiles website apis using the features in the swagger-3.0.0 specification",
+        "contact": {
+            "name": "Sell Mobiles Team",
+            "email": "sellmobileteam@gmail.com"
+        },
+        "license": {
+            "name": "MIT Liscense",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "0.1.9"
+    },
+    "servers": [{
+        "url": "https://sellmobiles-wtjan2019-qa-api.azurewebsites.net/api/v1",
+        "description": "API base url path for all the existing routes"
+    }],
+    "tags": [{
+            "name": "Auth",
+            "description": "API's for Auth routes"
+        },
+        {
+            "name": "Mobile",
+            "description": "API's for Mobile routes"
+        },
+        {
+            "name": "User",
+            "description": "API's for User routes"
+        },
+        {
+            "name": "Admin",
+            "description": "API's for Admin routes"
+        },
+        {
+            "name": "Chat",
+            "description": "API's for Chat routes"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/mobiles/list": {
+            "get": {
+                "tags": ["Mobile"],
+                "summary": "Get Mobiles",
+                "operationId": "getUser",
+                "description": "Get Mobiles Data exisisting in Database",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "This `mobile` data is obtained by posting data in `Post Mobiles` form",
+                                "operationId": "Post Mobiles",
+                                "parameters": {
+                                    "body": "$response.body"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "links": {
+                                    "description": "Some bad request has been made. Please check with the equest url or request body"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Data Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobiles` form",
+                                "operationId": "Post Mobiles",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mobiles/brands": {
+            "post": {
+                "tags": ["Mobile"],
+                "summary": "Fetch Mobiles with brand name",
+                "description": "Fetch Mobiles Data exisisting in Database with the brand name",
+                "requestBody": {
+                    "description": "Enter the brand name of the mobile along with the location name (If not location specific make its value as 'India')",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/searchWithBrandSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "message": "Success",
+                                "data": {
+                                    "$ref": "#/components/schemas/mobileResponseSchema"
+                                },
+                                "status": "200"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Data Found",
+                        "schema": {
+                            "message": "No Data Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobiles` form",
+                                "operationId": "Post Mobiles",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mobiles/city": {
+            "post": {
+                "tags": ["Mobile"],
+                "summary": "Fetch Mobiles city name",
+                "description": "Fetch Mobiles Data exisisting in Database with their city names",
+                "requestBody": {
+                    "description": "Enter the city name for searching mobiles in it",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/searchWithCitySchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": "",
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Data Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobiles` form",
+                                "operationId": "Post Mobiles",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mobiles/filter/{filterquery}": {
+            "get": {
+                "tags": ["Mobile"],
+                "summary": "Get Mobiles",
+                "description": "Get Mobiles basing on the filter query applied as the search criteria",
+                "parameters": [{
+                    "in": "path",
+                    "name": "filterquery",
+                    "description": "Enter the filterquery for getting required mobile details. Enter the required filter fields and remove the remaining if not required. If multiple filters are to e applied seperate the string using comma (,) (Enter the default location value as India)",
+                    "schema": {
+                        "type": "string",
+                        "example": "brand=Samsung,Apple&ram=3,8&rom=32,64,128&location=India"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": "",
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Data Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobiles` form",
+                                "operationId": "Post Mobiles",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mobiles/names": {
+            "get": {
+                "tags": ["Mobile"],
+                "summary": "Fetch Mobile brand names",
+                "description": "Fetch all the mobile brand names",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobilesBrandSchema"
+                            }
+                        },
+                        "status": "200"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "data": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Data Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data and try again",
+                                "operationId": "Get Brands",
+                                "parameters": {
+                                    "brand": "Honor",
+                                    "model": "array",
+                                    "items": [
+                                        "7x",
+                                        "View10"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mobiles/new": {
+            "post": {
+                "tags": ["Mobile"],
+                "summary": "Post Mobile",
+                "operationId": "enterMobile",
+                "description": "Post a mobile by entering all its details into a form",
+                "requestBody": {
+                    "description": "Enter the details of the mobile for adding it",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/mobileRegisterSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        },
+                        "links": {
+                            "GetMobiles": {
+                                "description": "Posted mobiles can be seen at `mobileList` method",
+                                "operationId": "Get Mobiles",
+                                "parameters": {
+                                    "body": "#/components/schemas/mobileResponseSchema"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the data and try again",
+                                "operationId": "Post Mobiles",
+                                "parameters": {
+                                    "body": ""
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/signup": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "Post User",
+                "description": "Post a user by entering all his/her details into the form",
+                "requestBody": {
+                    "description": "Enter the details of the mobile for adding it",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userSignUpRegisterSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the data and try again",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "Sign In as a user (Post)",
+                "description": "Enter the user details for sigining into the respective account",
+                "requestBody": {
+                    "description": "Enter the details of the mobile for adding it",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userSignInRegisterSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the user data and if not registered register at `Enter User` form and try again",
+                                "operationId": "PostUser",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "deprecated": false,
+                "tags": ["Auth"],
+                "summary": "Logout of your account",
+                "description": "Logout of a particular account by passing the token ID in headers. (Add the `Bearer` keyword before the token string in the Header)",
+                "parameters": [{
+                    "in": "header",
+                    "name": "user",
+                    "schema": {
+                        "type": "string",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdkBnbWFpbC5jb20iLCJpYXQiOjE1NTM3ODY2MTYsImV4cCI6MTU1Mzc5MDIxNn0.2AykbyZ4e-Fa2UO2Ylp3xk4L8ONKYUNQqLXj5IBxlac"
+                    },
+                    "required": true,
+                    "description": "Enter the Token ID of the user to log that account out"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Successfully deleted the user token and he's logged out of the respective device"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the request url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the data and try again",
+                                "operationId": "Logout of Sell Mobiles",
+                                "parameters": {
+                                    "body": ""
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/details/{tokenid}": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get User",
+                "description": "Fetch a user details with the respective login token Id (tokenId is the username for retreiving the user)",
+                "parameters": [{
+                    "in": "path",
+                    "name": "tokenid",
+                    "description": "Enter the tokenID of the user for getting his details",
+                    "schema": {
+                        "type": "string",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cmFqa3VtYXI2b2N0QGdtYWlsLmNvbSIsImlhdCI6MTU1Mzc4MTU3NCwiZXhwIjoxNTUzNzg1MTc0fQ.iZWZblDBL1SzZRhgNozndSXMSZxiA71dgwh_jGHF6Q8"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/feedback": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Post Feedback",
+                "description": "Post a feedback/query in the given format for sending the feedback mail to the admin",
+                "requestBody": {
+                    "description": "Enter your feedback/query below for making it to reach us",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/feedbackSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "text": "Mail Sent Successfully"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {
+                                "text": "Mail Sending Failed"
+                            },
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "GiveFeedBack": {
+                                "description": "Page for feedback is not working please check if the url is existing or not",
+                                "operationId": "",
+                                "parameters": {
+                                    "body": ""
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/update": {
+            "put": {
+                "tags": ["User"],
+                "summary": "Update User",
+                "description": "Update the details of a user by entering all his/her details into the form",
+                "requestBody": {
+                    "description": "Enter the details of the mobile for adding it",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userSignUpRegisterSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "PostMobileData": {
+                                "description": "No data found at the requested url. Please check with the data and try again",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/delete/{email}": {
+            "delete": {
+                "tags": ["User"],
+                "summary": "Get User",
+                "description": "Find and delete all the details of a user with the respective email address (emailID is the reference for retreiving the user)",
+                "parameters": [{
+                    "in": "path",
+                    "name": "email",
+                    "description": "Enter the Email address of the user for deleting his details completely",
+                    "schema": {
+                        "type": "string",
+                        "example": "iamcaptainamerica@gmail.com"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/deleteResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "204": {
+                        "description": "Success but Content not Present",
+                        "data": {
+                            "message": "Success but Content not Present",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/registered-users": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get Users",
+                "description": "Fetch all user details who are registered on the site",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/count-registered-users": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get count of Users",
+                "description": "Fetch the count of users registered on the site",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "type": "integer"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/count-online-users": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get count of online Users",
+                "description": "Fetch the count of users currently online on the site",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "type": "integer"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/online-users": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get all the details of online Users",
+                "description": "Fetch the details of users currently online",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/userResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/top-liked-posts": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get the top liked mobiles",
+                "description": "Fetch the mobile details which has more number of likes",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobile` form",
+                                "operationId": "Post Mobile",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/total-posts": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get the count of all Mobiles",
+                "description": "Fetch the count of mobiles available on the site",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "type": "integer"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobile` form",
+                                "operationId": "Post Mobile",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/sold-mobiles-count": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get count of sold mobiles",
+                "description": "Fetch the count mobile details sold on the site till now",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "type": "integer"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobile` form",
+                                "operationId": "Post Mobile",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/getposts/:userName": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "Get posts of a particular User",
+                "description": "Fetch all the mobiles posted by a particular user with his user name",
+                "parameters": [{
+                    "in": "path",
+                    "name": "userName",
+                    "description": "Enter the user name of the user for getting his details",
+                    "schema": {
+                        "type": "string",
+                        "example": "pavanaditya0112"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/mobileResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post Mobile` form",
+                                "operationId": "Post Mobile",
+                                "parameters": {
+                                    "body": "#definitions/mobileRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/usersessioncheck": {
+            "post": {
+                "tags": ["Chat"],
+                "summary": "Get the session of a User",
+                "description": "Fetch a user details and his session (online or offline)with the respective login token Id (tokenId is the username for retreiving the user)",
+                "requestBody": {
+                    "description": "Enter the user Id for schecking his session (online or not)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserSessionCheckSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "type": "string",
+                                "example": "Rahul"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/getmessages": {
+            "post": {
+                "tags": ["Chat"],
+                "summary": "Get Messages",
+                "description": "Fetch all the message conversations between two particular users",
+                "requestBody": {
+                    "description": "Enter the user Ids of both the users for getting their convcersation list",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetMessagesRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "data": {
+                            "message": "Success",
+                            "data": {
+                                "$ref": "#/components/schemas/GetMessagesResponseSchema"
+                            },
+                            "status": "200"
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "message": "Bad Request",
+                            "data": {},
+                            "status": "500"
+                        },
+                        "links": {
+                            "links": {
+                                "description": "Some bad request has been made. Please check with the equest url or request body"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page Not Found",
+                        "schema": {
+                            "message": "Page Not Found",
+                            "data": {},
+                            "status": "404"
+                        },
+                        "links": {
+                            "EnterUser": {
+                                "description": "No data found at the requested url. Please check with the url or enter some data using `Post User` form",
+                                "operationId": "Post User",
+                                "parameters": {
+                                    "body": "#definitions/userRegisterSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "mobileResponseSchema": {
+                "properties": {
+                    "likedBy": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "image": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "_id": {
+                        "type": "string"
+                    },
+                    "brand": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "ram": {
+                        "type": "integer"
+                    },
+                    "rom": {
+                        "type": "integer"
+                    },
+                    "primaryCamera": {
+                        "type": "integer"
+                    },
+                    "secondaryCamera": {
+                        "type": "integer"
+                    },
+                    "battery": {
+                        "type": "integer"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "buyerUserName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "mobileRegisterSchema": {
+                "properties": {
+                    "image": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "https://firebasestorage.googleapis.com/v0/b/sellmobile-cbdc5.appspot.com/o/files%2Fmobile7.jfif?alt=media&token=b97b9e04-25c5-4267-a8f9-d943eac3c8b3",
+                            "https://firebasestorage.googleapis.com/v0/b/sellmobile-cbdc5.appspot.com/o/files%2Fmobile2.jfif?alt=media&token=1b669196-0787-403b-b496-726db2841a1a",
+                            "https://firebasestorage.googleapis.com/v0/b/sellmobile-cbdc5.appspot.com/o/files%2Fmobile1.jfif?alt=media&token=325b6c74-0721-41d6-bf30-bed8a96cf1c7",
+                            "https://firebasestorage.googleapis.com/v0/b/sellmobile-cbdc5.appspot.com/o/files%2Fmobile6.jfif?alt=media&token=ee58262b-8788-471f-8e47-b00784869266"
+                        ]
+                    },
+                    "brand": {
+                        "type": "string",
+                        "example": "Honor"
+                    },
+                    "model": {
+                        "type": "string",
+                        "example": "7x"
+                    },
+                    "ram": {
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "rom": {
+                        "type": "integer",
+                        "example": 64
+                    },
+                    "primaryCamera": {
+                        "type": "integer",
+                        "example": 32
+                    },
+                    "secondaryCamera": {
+                        "type": "integer",
+                        "example": 8
+                    },
+                    "battery": {
+                        "type": "integer",
+                        "example": 4050
+                    },
+                    "location": {
+                        "type": "string",
+                        "example": "Mumbai"
+                    },
+                    "price": {
+                        "type": "integer",
+                        "example": 10200
+                    }
+                },
+                "required": [
+                    "image",
+                    "brand",
+                    "model",
+                    "ram",
+                    "rom",
+                    "primaryCamera",
+                    "secondaryCamera",
+                    "battery",
+                    "location",
+                    "price"
+                ]
+            },
+            "mobilesBrandSchema": {
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "brand": "string",
+                    "model": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "userResponseSchema": {
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "mobileNumber": {
+                        "type": "integer"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "confirmPassword": {
+                        "type": "string"
+                    },
+                    "tokens": {
+                        "type": "array",
+                        "items": "string"
+                    }
+                }
+            },
+            "userSignUpRegisterSchema": {
+                "properties": {
+                    "firstName": {
+                        "type": "string",
+                        "example": "Steve"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "example": "Rogers"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "iamcaptainamerica@gmail.com"
+                    },
+                    "mobileNumber": {
+                        "type": "string",
+                        "example": "6781367092"
+                    },
+                    "location": {
+                        "type": "string",
+                        "example": "Visakhapatnam"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "CapAmerica@1"
+                    },
+                    "confirmPassword": {
+                        "type": "string",
+                        "example": "CapAmerica@1"
+                    },
+                    "required": [
+                        "firstName",
+                        "lastName",
+                        "email",
+                        "mobileNumber",
+                        "location",
+                        "password",
+                        "confirmPassword"
+                    ]
+                }
+            },
+            "deleteResponseSchema": {
+                "properties": {
+                    "n": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "ok": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "deletedCount": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                }
+            },
+            "userSignInRegisterSchema": {
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "iamcaptainamerica@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "CapAmerica@1"
+                    },
+                    "required": [
+                        "email",
+                        "password"
+                    ]
+                }
+            },
+            "feedbackSchema": {
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "example": "Steve"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "iamcaptainamerica@gmail.com"
+                    },
+                    "choice": {
+                        "type": "string",
+                        "example": "query/feedback"
+                    },
+                    "query": {
+                        "type": "string",
+                        "example": "Your website is really great kid. You guys gotta done a good job. with love --Cap "
+                    },
+                    "feedBack": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "required": [
+                        "email"
+                    ]
+                }
+            },
+            "passportLogoutSchema": {
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "example": "ya29.GlvZBm7Z_GxaCf1w8muwLDLyANR3xqxJhOU74WcRI_WVqNvIUfX5z_eGE-U-BSGFuK8IJ_S6e3Qqqz8EtjsvKNp-wkfibWKr4k9ReeVoI7_nHGucvIHWsDyMRGRX"
+                    }
+                }
+            },
+            "searchWithBrandSchema": {
+                "properties": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "example": [
+                    "India",
+                    "Honor"
+                ]
+            },
+            "searchWithCitySchema": {
+                "properties": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "example": [
+                    "Mumbai"
+                ]
+            },
+            "UserSessionCheckSchema": {
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "example": "5ca57fd8a688b7092caa860c"
+                    }
+                }
+            },
+            "GetMessagesRequestSchema": {
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "example": "5ca57fd8a688b7092caa860c"
+                    },
+                    "toUserId": {
+                        "type": "string",
+                        "example": "5caa42c89a6b531200f06cb1"
+                    }
+                }
+            },
+            "GetMessagesResponseSchema": {
+                "properties": {
+                    "error": {
+                        "type": "boolean",
+                        "example": "false"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "type": "{}",
+                            "example": {
+                                "properties": {
+                                    "fromUserId": {
+                                        "type": "string",
+                                        "example": "5ca57fd8a688b7092caa860c"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Hi"
+                                    },
+                                    "toUserId": {
+                                        "type": "string",
+                                        "example": "5caa42c89a6b531200f06cb1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
