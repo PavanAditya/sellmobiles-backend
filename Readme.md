@@ -7,7 +7,7 @@ When a seller would like to post a mobile , he/she needs to sign in to get redir
 The awesome UI of the site makes it easy for the user to access information from the site as well as to sell the second hand mobile directly to any other user with a simple step i.e. The chat.
 
 
-## commands
+## Commands for working
 
 Initially, run npm i for installing all the dependencies used in this app
 
