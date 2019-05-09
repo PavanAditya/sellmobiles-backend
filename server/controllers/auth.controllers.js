@@ -202,7 +202,7 @@ const generateAuthToken = async (req, res) => {
         if (req.isAuthenticated()) {
             res.status(200);
             // await res.redirect(`http://localhost:4200?authtoken=${req.user.token}`);
-            await res.redirect(`https://sellmobile-wtjan2019-dev-client.azurewebsites.net?authtoken=${req.user.token}`);
+            await res.redirect(`https://sellmobiles.pavanaditya.com?authtoken=${req.user.token}`);
         }
     } catch (err) {
         res.status(500).json({
@@ -244,10 +244,10 @@ const forgotPassword = async (req, res, next) => {
             from: 'sellmobileteam@gmail.com',
             to: userForgotPassword.email,
             subject: 'Password recovery details- sellMobiles',
-            text: `click this to reset your password : <a href="https://sellmobile-wtjan2019-dev-client.azurewebsites.net/resetpassword">reset</a>`,
+            text: `click this to reset your password : <a href="https://sellmobiles.pavanaditya.com/resetpassword">reset</a>`,
 
             html: `Dear <b>${firstName},</b>  <br>
-                    <b>click this to reset your password : <a href="https://sellmobile-wtjan2019-dev-client.azurewebsites.net/resetpassword/${tokens.token}">reset</a></b>
+                    <b>click this to reset your password : <a href="https://sellmobiles.pavanaditya.com/resetpassword/${tokens.token}">reset</a></b>
                     <p>If this is not you please ignore, your account is safe</p><br>
                 
                 Regards,<br>
