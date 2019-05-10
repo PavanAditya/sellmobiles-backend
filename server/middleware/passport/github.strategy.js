@@ -11,7 +11,7 @@ const passportGithubStrategy = () => {
             // callbackURL: 'http://localhost:3000/api/v1/auth/passport/github/callback'
             // callbackURL: 'https://sellmobiles-wtjan2019-qa-api.azurewebsites.net/api/v1/auth/passport/github/callback'
             // callbackURL: 'http://sellmobiles.azurewebsites.net/api/v1/auth/passport/github/callback'
-            callbackURL: 'http://sellmobiles.herokuapp.com/api/v1/auth/passport/github/callback'
+            callbackURL: 'https://sellmobiles.herokuapp.com/api/v1/auth/passport/github/callback'
         },
         (async (accessToken, refreshToken, profile, done) => {
             const userObject = await formSchema.findOne({
