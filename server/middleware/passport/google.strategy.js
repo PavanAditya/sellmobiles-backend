@@ -11,7 +11,7 @@ const passportGoogleStrategy = () => {
             clientSecret: '2KKN8EjYnTYM-AKUDNy7CBRr',
             // callbackURL: 'https://sellmobiles-wtjan2019-qa-api.azurewebsites.net/api/v1/auth/passport/google/callback'
             // callbackURL: 'https://sellmobiles.azurewebsites.net/api/v1/auth/passport/google/callback'
-            callbackURL: 'http://sellmobiles.herokuapp.com/api/v1/auth/passport/google/callback'
+            callbackURL: 'https://sellmobiles.herokuapp.com/api/v1/auth/passport/google/callback'
             // callbackURL: 'http://localhost:3000/api/v1/auth/passport/google/callback'
         },
         (async (accessToken, refreshToken, profile, done) => {
