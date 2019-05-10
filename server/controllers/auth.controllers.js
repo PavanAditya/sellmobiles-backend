@@ -201,9 +201,8 @@ const generateAuthToken = async (req, res) => {
     try {
         if (req.isAuthenticated()) {
             res.status(200);
-            const passportAuthToken = req.user.tokens[0].token;
-            // await res.redirect(`http://localhost:4200?authtoken=${passportAuthToken}`);
-            await res.redirect(`https://sellmobiles.pavanaditya.com?authtoken=${passportAuthToken}`);
+            // await res.redirect(`http://localhost:4200?authtoken=${req.user.tokens[0].token}`);
+            await res.redirect(`https://sellmobiles.pavanaditya.com?authtoken=${req.user.tokens[0].token}`);
         }
     } catch (err) {
         res.status(500).json({
