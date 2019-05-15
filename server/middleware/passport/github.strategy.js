@@ -9,8 +9,8 @@ const passportGithubStrategy = () => {
             clientID: '6484968203fb83109ff6',
             clientSecret: '7b8a61a60932de73cde7301d93bc5bf1666a958c',
             // callbackURL: 'http://localhost:3000/api/v1/auth/passport/github/callback'
-            // callbackURL: 'https://sellmobiles-wtjan2019-qa-api.azurewebsites.net/api/v1/auth/passport/github/callback'
-            callbackURL: 'http://sellmobiles.azurewebsites.net/api/v1/auth/passport/github/callback'
+            // callbackURL: 'https://sellmobiles.herokuapp.com/api/v1/auth/passport/github/callback'
+            callbackURL: 'http://sellmobiles.herokuapp.com/api/v1/auth/passport/github/callback'
         },
         (async (accessToken, refreshToken, profile, done) => {
             const userObject = await formSchema.findOne({

@@ -14,7 +14,7 @@
         "version": "0.1.9"
     },
     "servers": [{
-        "url": "https://sellmobiles.azurewebsites.net/api/v1",
+        "url": "https://sellmobiles.herokuapp.com/api/v1",
         "description": "API base url path for all the existing routes"
     }],
     "tags": [{

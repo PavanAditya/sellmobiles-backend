@@ -120,8 +120,8 @@ const signUp = async (req, res, next) => {
             const mailOptions = {
                 from: 'sellmobileteam@gmail.com',
                 to: newUser.email,
-                subject: 'signUp with sellMobiles',
-                text: 'succesfully registered with sell mobiles ',
+                subject: 'Sign Up with Sell Mobiles',
+                text: 'Succesfully registered with Sell Mobiles ',
                 html: `Dear <b>${firstName},<b><br>
 
                 <b>Thank you for registering with sell mobiles!<b> We have received your registration . Thank you!. If you need to make any changes to your contact information , you will need to email me with that request since your registration is now “locked”.
@@ -202,7 +202,7 @@ const generateAuthToken = async (req, res) => {
         if (req.isAuthenticated()) {
             res.status(200);
             // await res.redirect(`http://localhost:4200?authtoken=${req.user.token}`);
-            await res.redirect(`https://sellmobile-wtjan2019-dev-client.azurewebsites.net?authtoken=${req.user.token}`);
+            await res.redirect(`https://sellmobiles.pavanaditya.com?authtoken=${req.user.token}`);
         }
     } catch (err) {
         res.status(500).json({
@@ -244,10 +244,10 @@ const forgotPassword = async (req, res, next) => {
             from: 'sellmobileteam@gmail.com',
             to: userForgotPassword.email,
             subject: 'Password recovery details- sellMobiles',
-            text: `click this to reset your password : <a href="https://sellmobile-wtjan2019-dev-client.azurewebsites.net/resetpassword">reset</a>`,
+            text: `click this to reset your password : <a href="https://sellmobiles.pavanaditya.com/resetpassword">reset</a>`,
 
             html: `Dear <b>${firstName},</b>  <br>
-                    <b>click this to reset your password : <a href="https://sellmobile-wtjan2019-dev-client.azurewebsites.net/resetpassword/${tokens.token}">reset</a></b>
+                    <b>click this to reset your password : <a href="https://sellmobiles.pavanaditya.com/resetpassword/${tokens.token}">reset</a></b>
                     <p>If this is not you please ignore, your account is safe</p><br>
                 
                 Regards,<br>

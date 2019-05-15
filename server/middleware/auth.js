@@ -6,16 +6,25 @@ const {
 const auth = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
-        const decoded = jwt.verify(token, 'thisismynewcourse');
-        const user = await formSchema.findOne({
-            email: decoded.email,
+        const userFound = await formSchema.findOne({
             'tokens.token': token
         });
-        if (!user) {
-            throw new Error();
+        if (userFound.loginMethod !== 'google') {
+            const decoded = jwt.verify(token, 'thisismynewcourse');
+            const user = await formSchema.findOne({
+                email: decoded.email,
+                'tokens.token': token
+            });
+            if (!user) {
+                throw new Error();
+            }
+            req.token = token;
+            req.user = user;
         }
-        req.token = token;
-        req.user = user;
+        else {
+            req.token = token;
+            req.user = userFound;
+        }
         next();
         return;
 

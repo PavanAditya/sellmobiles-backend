@@ -22,7 +22,7 @@ router.route('/google')
 // ! pasport login failure
 //  http://localhost:3000/api/v1/passport/failure
 router.route('/failure').get((req, resp) => {
-    resp.redirect('https://sellmobile-wtjan2019-dev-client.azurewebsites.net/');
+    resp.redirect('https://sellmobiles.pavanaditya.com');
     // resp.redirect('http://localhost:4200/login');
 });
 
